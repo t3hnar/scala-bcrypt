@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ua.t3hnar.bcrypt</groupId>
-    <artifactId>scala-bcrypt</artifactId>
+    <artifactId>scala-bcrypt_${scala.version}}</artifactId>
     <version>1.1-SNAPSHOT</version>
 
     <name>Scala BCrypt</name>
