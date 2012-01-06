@@ -1,3 +1,5 @@
+package ua.t3hnar
+
 /*
    Copyright 2011 Yaroslav Klymko
 
@@ -14,16 +16,12 @@
    limitations under the License.
 */
 
-package ua.t3hnar
-
 import org.mindrot.{BCrypt => B}
 
 /**
  * @author Yaroslav Klymko
  */
-object bcrypt extends bcrypt
-
-trait bcrypt {
+package object bcrypt {
   implicit def stringWithBCrypt(password: String) = new {
     def bcrypt: String = B.hashpw(password, gensalt())
 

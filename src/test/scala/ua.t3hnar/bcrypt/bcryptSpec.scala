@@ -1,7 +1,6 @@
-package ua.t3hnar
+package ua.t3hnar.bcrypt
 
 import org.specs2.mutable.SpecificationWithJUnit
-import bcrypt._
 
 /**
  * @author Yaroslav Klymko
