@@ -26,9 +26,8 @@
     </licenses>
 
     <scm>
-
         <url>https://github.com/t3hnar/scala-bcrypt</url>
-        <connection>scm:git:git://github.com/t3hnar/scala-bcrypt.git</connection>
+        <connection>scm:git:ssh://git@github.com/t3hnar/scala-bcrypt.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/t3hnar/scala-bcrypt.git</developerConnection>
     </scm>
 
