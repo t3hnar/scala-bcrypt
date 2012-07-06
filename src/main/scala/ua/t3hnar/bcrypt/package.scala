@@ -16,20 +16,11 @@ package ua.t3hnar
    limitations under the License.
 */
 
-import org.mindrot.{BCrypt => B}
+import org.mindrot.jbcrypt.{BCrypt => B}
 
 /**
  * @author Yaroslav Klymko
  */
 package object bcrypt {
-  implicit def stringWithBCrypt(password: String) = new {
-    def bcrypt: String = B.hashpw(password, gensalt())
-
-    def bcrypt(rounds: Int): String = B.hashpw(password, gensalt(rounds))
-
-    def bcrypted_?(bcryptedPassword: String): Boolean =
-      B.checkpw(password, bcryptedPassword)
-  }
-
-  def gensalt(rounds: Int = 10): String = B.gensalt(rounds)
+  implicit def string2Password(password: String) = new Password(password)
 }

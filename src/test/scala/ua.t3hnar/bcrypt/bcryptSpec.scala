@@ -8,10 +8,30 @@ import org.specs2.mutable.SpecificationWithJUnit
 class bcryptSpec extends SpecificationWithJUnit {
 
   "bcrypt" should {
-    "stringWithBCrypt" >> {
-      val encrypted = "my bad password".bcrypt
-      "my bad password".bcrypted_?(encrypted) must beTrue
-      "my new password".bcrypted_?(encrypted) must beFalse
+    "encrypt and check if bcrypted" >> {
+      val hash = "my password".bcrypt
+      "my password".isBcrypted(hash) must beTrue
+      "my new password".isBcrypted(hash) must beFalse
     }
+
+    "use cache for often calls" >> {
+      val hash = "my password".bcrypt
+
+      def _measure = measure {
+        "my password".isBcryptedWithCache(hash) must beTrue
+      }
+
+      val r1 = _measure
+      val r2 = _measure
+
+      r2 must beLessThan(r1 / 10)
+    }
+  }
+
+  def measure[T](func: => T): Long = {
+    val start = System.currentTimeMillis()
+    func
+    val duration = System.currentTimeMillis() - start
+    duration
   }
 }
