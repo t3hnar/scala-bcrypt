@@ -14,6 +14,7 @@ object PasswordCache {
 
 trait PasswordCache {
   import PasswordCache._
+
   def get(entry: CacheEntry): Option[Boolean]
   def put(entry: CacheEntry, value: Boolean): Option[Boolean]
 }
@@ -23,7 +24,7 @@ class MappedCache
   with mutable.SynchronizedMap[PasswordCache.CacheEntry, Boolean]
   with PasswordCache
 
-class ExpiringCache(duration: Long, unit: TimeUnit) extends PasswordCache{
+class ExpiringCache(duration: Long, unit: TimeUnit) extends PasswordCache {
   import PasswordCache._
 
   case class ExpiringValue(value: Boolean, timestamp: Long)
