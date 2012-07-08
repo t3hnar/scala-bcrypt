@@ -24,27 +24,26 @@ class MappedCache
   with mutable.SynchronizedMap[PasswordCache.CacheEntry, Boolean]
   with PasswordCache
 
-class ExpiringCache(duration: Long, unit: TimeUnit) extends PasswordCache {
+class ExpiringCache(duration: Long, unit: TimeUnit, queryOverflow: Int = 1000) extends PasswordCache {
   import PasswordCache._
 
   case class ExpiringValue(value: Boolean, timestamp: Long)
 
   val map = new mutable.HashMap[CacheEntry, ExpiringValue]
 
-  override def get(key: CacheEntry) = synchronized {
+  def get(key: CacheEntry) = synchronized {
     increaseQueryCount()
     maybeCleanExpired()
     map.get(key).map(_.value)
   }
 
-  private def currentMillis = System.currentTimeMillis()
-
   def put(entry: CacheEntry, value: Boolean) = synchronized {
     map.put(entry, ExpiringValue(value, currentMillis)).map(_.value)
   }
 
+  def currentMillis = System.currentTimeMillis()
+
   private var queryCount = 0
-  private val queryOverflow = 1000
 
   def increaseQueryCount() {
     queryCount = queryCount + 1
