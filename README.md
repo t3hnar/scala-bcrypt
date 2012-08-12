@@ -1,11 +1,8 @@
-Scala Bcrypt
-============
+# Scala Bcrypt [![Build Status](https://secure.travis-ci.org/t3hnar/scala-bcrypt.png)](http://travis-ci.org/t3hnar/scala-bcrypt)
 
 Scala Bcrypt is a scala friendly wrapper of [jBCRYPT](http://www.mindrot.org/projects/jBCrypt/)
 
-Example
-=======
-
+## Example
 ```scala
     scala>  import ua.t3hnar.bcrypt._
     import ua.t3hnar.bcrypt._
