@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>ua.t3hnar.bcrypt</groupId>
-    <artifactId>scala-bcrypt_${scala.version}</artifactId>
+    <artifactId>scala-bcrypt</artifactId>
     <version>1.4-SNAPSHOT</version>
 
     <name>Scala BCrypt</name>
