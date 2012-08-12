@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.thenewmotion</groupId>
-        <artifactId>parent</artifactId>
-        <version>1.6</version>
+        <groupId>ua.t3hnar</groupId>
+        <artifactId>scala-parent-pom</artifactId>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
     <groupId>ua.t3hnar.bcrypt</groupId>
@@ -16,17 +17,10 @@
     <url>https://github.com/t3hnar/scala-bcrypt</url>
     <inceptionYear>2011</inceptionYear>
 
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-        </license>
-    </licenses>
-
     <scm>
-        <url>https://github.com/t3hnar/scala-bcrypt</url>
-        <connection>scm:git:ssh://git@github.com/t3hnar/scala-bcrypt.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/t3hnar/scala-bcrypt.git</developerConnection>
+        <url>${github.repository.url}</url>
+        <connection>${github.connection}</connection>
+        <developerConnection>${github.connection}</developerConnection>
     </scm>
 
     <developers>
@@ -36,80 +30,19 @@
         </developer>
     </developers>
 
-    <properties>
-        <scala.version>2.9.2</scala.version>
-        <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
-    </properties>
-
-    <repositories>
-        <repository>
-            <id>thenewmotion-nexus</id>
-            <url>http://nexus.thenewmotion.com/content/groups/public/</url>
-        </repository>
-    </repositories>
-
     <dependencies>
-        <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
-            <version>${scala.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>org.mindrot</groupId>
             <artifactId>jbcrypt</artifactId>
             <version>0.3m</version>
         </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.10</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.specs2</groupId>
-            <artifactId>specs2_${scala.version}</artifactId>
-            <version>1.10</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.12</version>
-                <configuration>
-                    <includes>
-                        <include>**/*Spec.class</include>
-                    </includes>
-                </configuration>
-            </plugin>
-
-
-            <plugin>
-                <groupId>net.alchim31.maven</groupId>
-                <artifactId>scala-maven-plugin</artifactId>
-                <version>3.0.2</version>
-                <configuration>
-                    <scalaVersion>${scala.version}</scalaVersion>
-                    <args>
-                        <arg>-unchecked</arg>
-                        <arg>-deprecation</arg>
-                        <arg>-explaintypes</arg>
-                    </args>
-                    <charset>${project.build.sourceEncoding}</charset>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+    <repositories>
+        <repository>
+            <id>thenewmotion</id>
+            <name>The New Motion Repository</name>
+            <url>http://nexus.thenewmotion.com/content/groups/public</url>
+        </repository>
+    </repositories>
 </project>
