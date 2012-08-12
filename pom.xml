@@ -10,7 +10,7 @@
 
     <groupId>ua.t3hnar.bcrypt</groupId>
     <artifactId>scala-bcrypt</artifactId>
-    <version>1.4</version>
+    <version>1.5-SNAPSHOT</version>
 
     <name>Scala BCrypt</name>
     <url>https://github.com/t3hnar/scala-bcrypt</url>
