@@ -31,6 +31,6 @@ Scala Bcrypt is a scala friendly wrapper of [jBCRYPT](http://www.mindrot.org/pro
     <dependency>
         <groupId>ua.t3hnar.bcrypt</groupId>
         <artifactId>scala-bcrypt</artifactId>
-        <version>1.4</version>
+        <version>2.0</version>
     </dependency>
 ```
