@@ -4,12 +4,12 @@
 
     <parent>
         <groupId>ua.t3hnar</groupId>
-        <artifactId>scala-parent-pom</artifactId>
+        <artifactId>scala-parent-pom_2.10.0-RC2</artifactId>
         <version>2.0-SNAPSHOT</version>
     </parent>
 
     <groupId>ua.t3hnar.bcrypt</groupId>
-    <artifactId>scala-bcrypt</artifactId>
+    <artifactId>scala-bcrypt_${scala.version}</artifactId>
     <version>2.0-SNAPSHOT</version>
 
     <name>Scala BCrypt</name>
