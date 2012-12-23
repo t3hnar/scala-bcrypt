@@ -18,9 +18,9 @@
     <inceptionYear>2011</inceptionYear>
 
     <scm>
-        <url>${github.repository.url}</url>
-        <connection>${github.connection}</connection>
-        <developerConnection>${github.connection}</developerConnection>
+        <url>https://github.com/t3hnar/scala-bcrypt</url>
+        <developerConnection>scm:git:ssh://git@github.com/t3hnar/scala-bcrypt</developerConnection>
+        <connection>scm:git:ssh://git@github.com/t3hnar/scala-bcrypt</connection>
     </scm>
 
     <developers>
