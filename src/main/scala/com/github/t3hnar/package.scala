@@ -1,4 +1,4 @@
-package ua.t3hnar
+package com.github.t3hnar
 
 import org.mindrot.jbcrypt.{BCrypt => B}
 

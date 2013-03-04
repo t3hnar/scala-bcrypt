@@ -1,4 +1,4 @@
-package ua.t3hnar.bcrypt
+package com.github.t3hnar.bcrypt
 
 import org.specs2.mutable.SpecificationWithJUnit
 

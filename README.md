@@ -5,8 +5,8 @@ Scala Bcrypt is a scala friendly wrapper of [jBCRYPT](http://www.mindrot.org/pro
 ## Example
 
 ```scala
-    scala>  import ua.t3hnar.bcrypt._
-    import ua.t3hnar.bcrypt._
+    scala>  import com.github.t3hnar.bcrypt._
+    import com.github.t3hnar.bcrypt._
 
     scala>  "password".bcrypt
     res1: String = $2a$10$iXIfki6AefgcUsPqR.niQ.FvIK8vdcfup09YmUxmzS/sQeuI3QOFG
@@ -17,20 +17,16 @@ Scala Bcrypt is a scala friendly wrapper of [jBCRYPT](http://www.mindrot.org/pro
 
 ## Setup
 
-1. Add this repository to your pom.xml:
-```xml
-    <repository>
-        <id>thenewmotion</id>
-        <name>The New Motion Repository</name>
-        <url>http://nexus.thenewmotion.com/content/repositories/releases-public</url>
-    </repository>
-```
-
-2. Add dependency to your pom.xml:
+* Maven:
 ```xml
     <dependency>
-        <groupId>ua.t3hnar.bcrypt</groupId>
+        <groupId>com.github.t3hnar.bcrypt</groupId>
         <artifactId>scala-bcrypt_2.10</artifactId>
-        <version>2.0</version>
+        <version>2.1</version>
     </dependency>
+```
+
+* Sbt
+```scala
+    libraryDependencies += "com.github.t3hnar.bcrypt" % "scala-bcrypt" % "2.0"
 ```
