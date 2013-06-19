@@ -7,7 +7,7 @@ import org.mindrot.jbcrypt.{BCrypt => B}
  */
 package object bcrypt {
 
-  implicit class Password(pswrd: String) {
+  implicit class Password(val pswrd: String) extends AnyVal {
     def bcrypt: String = B.hashpw(pswrd, BCrypt.gensalt())
 
     def bcrypt(rounds: Int): String = B.hashpw(pswrd, BCrypt.gensalt(rounds))
