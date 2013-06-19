@@ -14,6 +14,8 @@ class bcryptSpec extends SpecificationWithJUnit {
       "my new password".isBcrypted(hash) must beFalse
     }
 
+
+
     "use cache for often calls" >> {
       val hash = "my password".bcrypt
 
@@ -25,6 +27,13 @@ class bcryptSpec extends SpecificationWithJUnit {
       val r2 = _measure
 
       r2 must beLessThan(r1 / 10)
+    }
+
+    "encrypt with provided salt and check if bcrypted" >> {
+        val salt = BCrypt.gensalt()
+        val hash = "password".bcrypt(salt)
+        "password".isBcrypted(hash) must beTrue
+        "my new password".isBcrypted(hash) must beFalse
     }
   }
 

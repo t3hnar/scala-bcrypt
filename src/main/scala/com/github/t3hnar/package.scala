@@ -27,4 +27,7 @@ package object bcrypt {
 
     def isBcrypted(hash: String): Boolean = B.checkpw(pswrd, hash)
   }
+  
+  def generateSalt: String = B.gensalt()
+  
 }
