@@ -22,7 +22,7 @@ Scala Bcrypt is a scala friendly wrapper of [jBCRYPT](http://www.mindrot.org/pro
     <dependency>
         <groupId>com.github.t3hnar</groupId>
         <artifactId>scala-bcrypt_2.10</artifactId>
-        <version>2.1</version>
+        <version>2.2</version>
     </dependency>
 ```
 
