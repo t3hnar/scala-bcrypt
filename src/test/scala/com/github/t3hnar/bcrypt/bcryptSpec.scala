@@ -26,6 +26,13 @@ class bcryptSpec extends SpecificationWithJUnit {
 
       r2 must beLessThan(r1 / 10)
     }
+
+    "encrypt with provided salt and check if bcrypted" >> {
+        val salt = BCrypt.gensalt()
+        val hash = "password".bcrypt(salt)
+        "password".isBcrypted(hash) must beTrue
+        "my new password".isBcrypted(hash) must beFalse
+    }
   }
 
   def measure[T](func: => T): Long = {
