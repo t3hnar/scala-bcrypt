@@ -12,7 +12,7 @@ package object bcrypt {
 
     def bcrypt(rounds: Int): String = B.hashpw(pswrd, BCrypt.gensalt(rounds))
 
-    def bcrypt(salt: String) = B.hashpw(pswrd, salt)
+    def bcrypt(salt: String): String = B.hashpw(pswrd, salt)
 
     def isBcryptedWithCache(hash: String)(implicit cache: PasswordCache): Boolean = {
       val entry = PasswordCache.CacheEntry(pswrd, hash)
