@@ -17,7 +17,7 @@ object Build extends Build {
 
   val jbcrypt = "org.mindrot" % "jbcrypt" % "0.3m"
   val junit   = "junit" % "junit" % "4.11" % "test"
-  val specs2  = "org.specs2" %% "specs2" % "2.3.4" % "test"
+  val specs2  = "org.specs2" %% "specs2" % "2.3.11" % "test"
 
 
   lazy val root = Project(
