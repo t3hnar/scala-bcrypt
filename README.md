@@ -27,12 +27,12 @@ Scala Bcrypt is a scala friendly wrapper of [jBCRYPT](http://www.mindrot.org/pro
 ```xml
     <dependency>
         <groupId>com.github.t3hnar</groupId>
-        <artifactId>scala-bcrypt_2.10</artifactId>
-        <version>2.3</version>
+        <artifactId>scala-bcrypt_2.11</artifactId>
+        <version>2.4</version>
     </dependency>
 ```
 
 * Sbt
 ```scala
-    libraryDependencies += "com.github.t3hnar" % "scala-bcrypt_2.10" % "2.3"
+    libraryDependencies += "com.github.t3hnar" %% "scala-bcrypt" % "2.4"
 ```
