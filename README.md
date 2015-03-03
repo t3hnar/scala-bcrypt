@@ -2,7 +2,9 @@
 
 Scala Bcrypt is a scala friendly wrapper of [jBCRYPT](http://www.mindrot.org/projects/jBCrypt/)
 
-## Example
+## Examples
+
+#### Encrypt password
 
 ```scala
     scala>  import com.github.t3hnar.bcrypt._
@@ -10,16 +12,28 @@ Scala Bcrypt is a scala friendly wrapper of [jBCRYPT](http://www.mindrot.org/pro
 
     scala>  "password".bcrypt
     res1: String = $2a$10$iXIfki6AefgcUsPqR.niQ.FvIK8vdcfup09YmUxmzS/sQeuI3QOFG
+```
 
+#### Validate password
+
+```scala
     scala>  "password".isBcrypted("$2a$10$iXIfki6AefgcUsPqR.niQ.FvIK8vdcfup09YmUxmzS/sQeuI3QOFG")
     res2: Boolean = true
+```
 
+#### Advanced usage
+
+By default salt generated internally, and developer does not need to generate and store salt.
+But if you decide that you need to manage salt, you can use `bcrypt` in the following way:
+
+```scala
     scala>  val salt = generateSalt
     salt: String = $2a$10$8K1p/a0dL1LXMIgoEDFrwO
 
     scala>  "password".bcrypt(salt)
     res3: String = $2a$10$8K1p/a0dL1LXMIgoEDFrwOfMQbLgtnOoKsWc.6U6H0llP3puzeeEu
 ```
+
 
 ## Setup
 
