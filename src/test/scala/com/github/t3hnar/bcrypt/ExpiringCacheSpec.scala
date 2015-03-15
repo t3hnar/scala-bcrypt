@@ -1,13 +1,13 @@
 package com.github.t3hnar.bcrypt
 
-import org.specs2.mutable.SpecificationWithJUnit
+import org.specs2.mutable.Specification
 import java.util.concurrent.TimeUnit
 import PasswordCache._
 
 /**
  * @author Yaroslav Klymko
  */
-class ExpiringCacheSpec extends SpecificationWithJUnit {
+class ExpiringCacheSpec extends Specification {
   "ExpiringCache" should {
     "clean expired values" >> {
 

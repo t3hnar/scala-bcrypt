@@ -1,11 +1,11 @@
 package com.github.t3hnar.bcrypt
 
-import org.specs2.mutable.SpecificationWithJUnit
+import org.specs2.mutable.Specification
 
 /**
  * @author Yaroslav Klymko
  */
-class bcryptSpec extends SpecificationWithJUnit {
+class bcryptSpec extends Specification {
 
   "bcrypt" should {
     "encrypt and check if bcrypted" >> {
