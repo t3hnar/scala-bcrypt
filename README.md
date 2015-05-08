@@ -1,4 +1,4 @@
-# Scala Bcrypt [![Build Status](https://secure.travis-ci.org/t3hnar/scala-bcrypt.png)](http://travis-ci.org/t3hnar/scala-bcrypt)
+# Scala Bcrypt [![Build Status](https://secure.travis-ci.org/t3hnar/scala-bcrypt.svg)](http://travis-ci.org/t3hnar/scala-bcrypt) [![Version](https://img.shields.io/maven-central/v/com.github.t3hnar/scala-bcrypt_2.11.svg?label=version)](http://search.maven.org/#search%7Cga%7C1%7Cg%3Acom.github.t3hnar%20AND%20scala-bcrypt)
 
 Scala Bcrypt is a scala friendly wrapper of [jBCRYPT](http://www.mindrot.org/projects/jBCrypt/)
 
@@ -32,21 +32,4 @@ But if you decide that you need to manage salt, you can use `bcrypt` in the foll
 
     scala>  "password".bcrypt(salt)
     res3: String = $2a$10$8K1p/a0dL1LXMIgoEDFrwOfMQbLgtnOoKsWc.6U6H0llP3puzeeEu
-```
-
-
-## Setup
-
-* Maven:
-```xml
-    <dependency>
-        <groupId>com.github.t3hnar</groupId>
-        <artifactId>scala-bcrypt_2.11</artifactId>
-        <version>2.4</version>
-    </dependency>
-```
-
-* Sbt
-```scala
-    libraryDependencies += "com.github.t3hnar" %% "scala-bcrypt" % "2.4"
 ```
