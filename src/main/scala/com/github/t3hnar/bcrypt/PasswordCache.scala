@@ -1,7 +1,7 @@
 package com.github.t3hnar.bcrypt
 
 import collection.mutable
-import java.util.concurrent.TimeUnit
+import scala.concurrent.duration._
 
 /**
  * @author Yaroslav Klymko
@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 object PasswordCache {
   case class CacheEntry(password: String, hash: String)
 
-  implicit val Default = new ExpiringCache(1, TimeUnit.DAYS)
+  implicit val Default = new ExpiringCache(1, DAYS)
 }
 
 trait PasswordCache {
