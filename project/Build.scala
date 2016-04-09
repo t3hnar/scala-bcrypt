@@ -16,7 +16,7 @@ object Build extends Build {
     resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases",
     libraryDependencies ++= Seq(jbcrypt, specs2))
 
-  val jbcrypt = "de.svenkubiak" % "jBCrypt" % "0.4"
+  val jbcrypt = "de.svenkubiak" % "jBCrypt" % "0.4.1"
   val specs2  = "org.specs2" %% "specs2-core" % "3.0.1" % "test"
 
 
