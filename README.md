@@ -33,3 +33,19 @@ But if you decide that you need to manage salt, you can use `bcrypt` in the foll
     scala>  "password".bcrypt(salt)
     res3: String = $2a$10$8K1p/a0dL1LXMIgoEDFrwOfMQbLgtnOoKsWc.6U6H0llP3puzeeEu
 ```
+
+## Setup
+
+#### Sbt
+```scala
+libraryDependencies += "com.github.t3hnar" %% "scala-bcrypt" % "2.6"
+```
+
+#### Maven
+```xml
+<dependency>
+    <groupId>com.github.t3hnar</groupId>
+    <artifactId>scala-bcrypt_2.11</artifactId>
+    <version>2.6</version>
+</dependency>
+```
