@@ -14,17 +14,6 @@ package object bcrypt {
 
     def bcrypt(salt: String): String = B.hashpw(pswrd, salt)
 
-    def isBcryptedWithCache(hash: String)(implicit cache: PasswordCache): Boolean = {
-      val entry = PasswordCache.CacheEntry(pswrd, hash)
-      cache.get(entry) match {
-        case Some(value) => value
-        case None =>
-          val value = isBcrypted(hash)
-          cache.put(entry, value)
-          value
-      }
-    }
-
     def isBcrypted(hash: String): Boolean = B.checkpw(pswrd, hash)
   }
 

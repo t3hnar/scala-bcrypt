@@ -45,7 +45,7 @@ libraryDependencies += "com.github.t3hnar" %% "scala-bcrypt" % "2.6"
 ```xml
 <dependency>
     <groupId>com.github.t3hnar</groupId>
-    <artifactId>scala-bcrypt_2.11</artifactId>
-    <version>2.6</version>
+    <artifactId>scala-bcrypt_2.12</artifactId>
+    <version>3.0</version>
 </dependency>
 ```
