@@ -38,7 +38,7 @@ But if you decide that you need to manage salt, you can use `bcrypt` in the foll
 
 #### Sbt
 ```scala
-libraryDependencies += "com.github.t3hnar" %% "scala-bcrypt" % "2.6"
+libraryDependencies += "com.github.t3hnar" %% "scala-bcrypt" % "3.0"
 ```
 
 #### Maven
