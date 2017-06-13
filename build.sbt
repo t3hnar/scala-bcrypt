@@ -4,9 +4,9 @@ organization := "com.github.t3hnar"
 
 description := "Scala wrapper for jBcrypt + pom.xml inside"
 
-scalaVersion := "2.12.0"
+scalaVersion := "2.12.2"
 
-crossScalaVersions := Seq("2.12.0", "2.11.8", "2.10.6")
+crossScalaVersions := Seq("2.12.0", "2.11.11", "2.10.6")
 
 licenses := Seq(("Apache License, Version 2.0", url("http://www.apache.org/licenses/LICENSE-2.0")))
 
@@ -28,7 +28,7 @@ scalacOptions := Seq(
 
 libraryDependencies ++= Seq(
   "de.svenkubiak" % "jBCrypt" % "0.4.1",
-  "org.scalatest" %% "scalatest" % "3.0.0" % Test)
+  "org.scalatest" %% "scalatest" % "3.0.3" % Test)
 
 pomExtra in Global := {
   <scm>
