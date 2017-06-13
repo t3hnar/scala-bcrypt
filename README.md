@@ -18,7 +18,7 @@ Scala Bcrypt is a scala friendly wrapper of [jBCRYPT](http://www.mindrot.org/pro
 
 ```scala
     scala>  "password".isBcrypted("$2a$10$iXIfki6AefgcUsPqR.niQ.FvIK8vdcfup09YmUxmzS/sQeuI3QOFG")
-    res2: Boolean = true
+    res2: Try[Boolean] = Success(true)
 ```
 
 #### Advanced usage
@@ -31,7 +31,7 @@ But if you decide that you need to manage salt, you can use `bcrypt` in the foll
     salt: String = $2a$10$8K1p/a0dL1LXMIgoEDFrwO
 
     scala>  "password".bcrypt(salt)
-    res3: String = $2a$10$8K1p/a0dL1LXMIgoEDFrwOfMQbLgtnOoKsWc.6U6H0llP3puzeeEu
+    res3: Try[String] = Success($2a$10$8K1p/a0dL1LXMIgoEDFrwOfMQbLgtnOoKsWc.6U6H0llP3puzeeEu)
 ```
 
 ## Setup
