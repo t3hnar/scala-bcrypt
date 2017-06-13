@@ -94,6 +94,6 @@ libraryDependencies += "com.github.t3hnar" %% "scala-bcrypt" % "3.0"
 <dependency>
     <groupId>com.github.t3hnar</groupId>
     <artifactId>scala-bcrypt_2.12</artifactId>
-    <version>3.0</version>
+    <version>3.1</version>
 </dependency>
 ```
