@@ -4,6 +4,57 @@ Scala Bcrypt is a scala friendly wrapper of [jBCRYPT](http://www.mindrot.org/pro
 
 ## Examples
 
+### Safe APIs
+The safe APIs will result in `scala.util.Failure`s and `scala.util.Success`s when executing operations to explicitly 
+indicate the possibility that certain bcrypt operations can fail due to providing incorrect salt versions or number of 
+rounds (eg. > 30 rounds). 
+
+#### Encrypt password
+
+```scala
+    scala>  import com.github.t3hnar.bcrypt._
+    import com.github.t3hnar.bcrypt._
+
+    scala>  "password".bcrypt
+    res1: String = $2a$10$iXIfki6AefgcUsPqR.niQ.FvIK8vdcfup09YmUxmzS/sQeuI3QOFG
+```
+
+#### Validate password
+
+```scala
+    scala>  "password".isBcrypted("$2a$10$iXIfki6AefgcUsPqR.niQ.FvIK8vdcfup09YmUxmzS/sQeuI3QOFG")
+    res2: Try[Boolean] = Success(true)
+```
+
+#### Composition
+Since `Try` is monadic, you can use a for-comprehension to compose operations that return `Success` or `Failure` with
+fail-fast semantics. You can also use the desugared notation (`flatMap`s and `map`s) if you prefer
+```scala
+    scala>  val bcryptAndVerify = for {
+      bcrypted <- "hello".bcrypt(12)
+      result <- "hello".isBcrypted(bcrypted)
+    } yield result
+    res: Try[Boolean] = Success(true)
+```
+
+#### Advanced usage
+
+By default, the `salt` generated internally, and developer does not need to generate and store salt.
+But if you decide that you need to manage salt, you can use `bcrypt` in the following way:
+
+```scala
+    scala>  val salt = generateSalt
+    salt: String = $2a$10$8K1p/a0dL1LXMIgoEDFrwO
+
+    scala>  "password".bcrypt(salt)
+    res3: Try[String] = Success($2a$10$8K1p/a0dL1LXMIgoEDFrwOfMQbLgtnOoKsWc.6U6H0llP3puzeeEu)
+```
+
+### Unsafe APIs
+The Unsafe APIs will result in Exceptions being thrown when executing operations as certain bcrypt operations can fail 
+due to providing incorrect salt versions or number of rounds (eg. > 30 rounds). These Unsafe APIs are present for 
+backwards compatibility reasons and should be avoided if possible
+
 #### Encrypt password
 
 ```scala
@@ -23,9 +74,6 @@ Scala Bcrypt is a scala friendly wrapper of [jBCRYPT](http://www.mindrot.org/pro
 
 #### Advanced usage
 
-By default salt generated internally, and developer does not need to generate and store salt.
-But if you decide that you need to manage salt, you can use `bcrypt` in the following way:
-
 ```scala
     scala>  val salt = generateSalt
     salt: String = $2a$10$8K1p/a0dL1LXMIgoEDFrwO
@@ -36,7 +84,7 @@ But if you decide that you need to manage salt, you can use `bcrypt` in the foll
 
 ## Setup
 
-#### Sbt
+#### SBT
 ```scala
 libraryDependencies += "com.github.t3hnar" %% "scala-bcrypt" % "3.0"
 ```
