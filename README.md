@@ -86,7 +86,7 @@ backwards compatibility reasons and should be avoided if possible
 
 #### SBT
 ```scala
-libraryDependencies += "com.github.t3hnar" %% "scala-bcrypt" % "3.0"
+libraryDependencies += "com.github.t3hnar" %% "scala-bcrypt" % "3.1"
 ```
 
 #### Maven
