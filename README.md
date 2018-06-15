@@ -1,4 +1,4 @@
-# Scala Bcrypt [![Build Status](https://secure.travis-ci.org/t3hnar/scala-bcrypt.svg)](http://travis-ci.org/t3hnar/scala-bcrypt) [![Version](https://img.shields.io/maven-central/v/com.github.t3hnar/scala-bcrypt_2.11.svg?label=version)](http://search.maven.org/#search%7Cga%7C1%7Cg%3Acom.github.t3hnar%20AND%20scala-bcrypt)
+# Scala Bcrypt [![Build Status](https://secure.travis-ci.org/t3hnar/scala-bcrypt.svg)](http://travis-ci.org/t3hnar/scala-bcrypt) [![Coverage Status](https://coveralls.io/repos/evolution-gaming/scala-bcrypt/badge.svg)](https://coveralls.io/r/evolution-gaming/scala-bcrypt) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8e0fb26d880446428fd94b7e051e9cb0)](https://www.codacy.com/app/evolution-gaming/scala-bcrypt?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=t3hnar/scala-bcrypt&amp;utm_campaign=Badge_Grade) [![Version](https://img.shields.io/maven-central/v/com.github.t3hnar/scala-bcrypt_2.11.svg?label=version)](http://search.maven.org/#search%7Cga%7C1%7Cg%3Acom.github.t3hnar%20AND%20scala-bcrypt)
 
 Scala Bcrypt is a scala friendly wrapper of [jBCRYPT](http://www.mindrot.org/projects/jBCrypt/)
 
@@ -86,7 +86,7 @@ backwards compatibility reasons and should be avoided if possible
 
 #### SBT
 ```scala
-libraryDependencies += "com.github.t3hnar" %% "scala-bcrypt" % "3.1"
+libraryDependencies += "com.github.t3hnar" %% "scala-bcrypt" % "3.2"
 ```
 
 #### Maven
@@ -94,6 +94,6 @@ libraryDependencies += "com.github.t3hnar" %% "scala-bcrypt" % "3.1"
 <dependency>
     <groupId>com.github.t3hnar</groupId>
     <artifactId>scala-bcrypt_2.12</artifactId>
-    <version>3.1</version>
+    <version>3.2</version>
 </dependency>
 ```

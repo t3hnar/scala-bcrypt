@@ -1,6 +1,25 @@
+dist: trusty
+sudo: false
+
 language: scala
+
 scala:
-  - 2.12.2
-  - 2.11.11
-  - 2.10.6
-jdk: oraclejdk8
+  - 2.12.8
+  - 2.11.12
+
+jdk:
+  - oraclejdk8
+  - openjdk11
+
+script: sbt ++$TRAVIS_SCALA_VERSION clean coverage test
+
+after_success: sbt ++$TRAVIS_SCALA_VERSION coverageReport coveralls
+
+cache:
+  directories:
+    - $HOME/.ivy2/cache
+    - $HOME/.sbt
+
+before_cache:
+  - find $HOME/.ivy2/cache -name "ivydata-*.properties" -print -delete
+  - find $HOME/.sbt        -name "*.lock"               -print -delete
