@@ -22,7 +22,7 @@ rounds (eg. > 30 rounds).
 #### Validate password
 
 ```scala
-    scala>  "password".isBcrypted("$2a$10$iXIfki6AefgcUsPqR.niQ.FvIK8vdcfup09YmUxmzS/sQeuI3QOFG")
+    scala>  "password".isBcryptedSafe("$2a$10$iXIfki6AefgcUsPqR.niQ.FvIK8vdcfup09YmUxmzS/sQeuI3QOFG")
     res2: Try[Boolean] = Success(true)
 ```
 
@@ -32,7 +32,7 @@ fail-fast semantics. You can also use the desugared notation (`flatMap`s and `ma
 ```scala
     scala>  val bcryptAndVerify = for {
       bcrypted <- "hello".bcrypt(12)
-      result <- "hello".isBcrypted(bcrypted)
+      result <- "hello".isBcryptedSafe(bcrypted)
     } yield result
     res: Try[Boolean] = Success(true)
 ```
