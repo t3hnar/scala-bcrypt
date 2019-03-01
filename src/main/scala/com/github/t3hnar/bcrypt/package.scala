@@ -9,7 +9,7 @@ import scala.util.Try
  */
 package object bcrypt {
 
-  implicit class Password(val pswrd: String) extends AnyVal {
+  implicit class BCryptStrOps(val pswrd: String) extends AnyVal {
     def bcrypt: String = B.hashpw(pswrd, BCrypt.gensalt())
 
     def bcrypt(rounds: Int): String = B.hashpw(pswrd, BCrypt.gensalt(rounds))
