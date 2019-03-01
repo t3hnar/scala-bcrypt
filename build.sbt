@@ -48,3 +48,10 @@ pomExtra in Global := {
 }
 
 releasePublishArtifactsAction := PgpKeys.publishSigned.value
+
+publishTo := Some(
+  if (isSnapshot.value)
+    Opts.resolver.sonatypeSnapshots
+  else
+    Opts.resolver.sonatypeStaging
+)
