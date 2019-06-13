@@ -86,14 +86,14 @@ backwards compatibility reasons and should be avoided if possible
 
 #### SBT
 ```scala
-libraryDependencies += "com.github.t3hnar" %% "scala-bcrypt" % "4.0"
+libraryDependencies += "com.github.t3hnar" %% "scala-bcrypt" % "4.1"
 ```
 
 #### Maven
 ```xml
 <dependency>
     <groupId>com.github.t3hnar</groupId>
-    <artifactId>scala-bcrypt_2.12</artifactId>
-    <version>4.0</version>
+    <artifactId>scala-bcrypt_2.13</artifactId>
+    <version>4.1</version>
 </dependency>
 ```
