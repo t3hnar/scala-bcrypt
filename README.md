@@ -15,24 +15,24 @@ rounds (eg. > 30 rounds).
     scala>  import com.github.t3hnar.bcrypt._
     import com.github.t3hnar.bcrypt._
 
-    scala>  "password".bcrypt
-    res1: String = $2a$10$iXIfki6AefgcUsPqR.niQ.FvIK8vdcfup09YmUxmzS/sQeuI3QOFG
+    scala>  "password".boundedBcryptSafe
+    res1: Try[String] = Success($2a$10$iXIfki6AefgcUsPqR.niQ.FvIK8vdcfup09YmUxmzS/sQeuI3QOFG)
 ```
 
 #### Validate password
 
 ```scala
-    scala>  "password".isBcryptedSafe("$2a$10$iXIfki6AefgcUsPqR.niQ.FvIK8vdcfup09YmUxmzS/sQeuI3QOFG")
+    scala>  "password".isBoundedBcryptedSafe("$2a$10$iXIfki6AefgcUsPqR.niQ.FvIK8vdcfup09YmUxmzS/sQeuI3QOFG")
     res2: Try[Boolean] = Success(true)
 ```
 
 #### Composition
 Since `Try` is monadic, you can use a for-comprehension to compose operations that return `Success` or `Failure` with
-fail-fast semantics. You can also use the desugared notation (`flatMap`s and `map`s) if you prefer
+fail-fast semantics. You can also use the desugared notation (`flatMap`s and `map`s) if you prefer.
 ```scala
     scala>  val bcryptAndVerify = for {
-      bcrypted <- "hello".bcrypt(12)
-      result <- "hello".isBcryptedSafe(bcrypted)
+      bcrypted <- "hello".safeBoundedBcrypt(12)
+      result <- "hello".isBoundedBcryptedSafe(bcrypted)
     } yield result
     res: Try[Boolean] = Success(true)
 ```
@@ -46,14 +46,14 @@ But if you decide that you need to manage salt, you can use `bcrypt` in the foll
     scala>  val salt = generateSalt
     salt: String = $2a$10$8K1p/a0dL1LXMIgoEDFrwO
 
-    scala>  "password".bcrypt(salt)
+    scala>  "password".boundedBcrypt(salt)
     res3: Try[String] = Success($2a$10$8K1p/a0dL1LXMIgoEDFrwOfMQbLgtnOoKsWc.6U6H0llP3puzeeEu)
 ```
 
 ### Unsafe APIs
 The Unsafe APIs will result in Exceptions being thrown when executing operations as certain bcrypt operations can fail 
-due to providing incorrect salt versions or number of rounds (eg. > 30 rounds). These Unsafe APIs are present for 
-backwards compatibility reasons and should be avoided if possible
+due to providing incorrect salt versions or number of rounds (eg. > 30 rounds or password longer than 71 bytes). These Unsafe APIs are present for 
+backwards compatibility reasons and should be avoided if possible.
 
 #### Encrypt password
 
@@ -61,14 +61,14 @@ backwards compatibility reasons and should be avoided if possible
     scala>  import com.github.t3hnar.bcrypt._
     import com.github.t3hnar.bcrypt._
 
-    scala>  "password".bcrypt
+    scala>  "password".boundedBcrypt
     res1: String = $2a$10$iXIfki6AefgcUsPqR.niQ.FvIK8vdcfup09YmUxmzS/sQeuI3QOFG
 ```
 
 #### Validate password
 
 ```scala
-    scala>  "password".isBcrypted("$2a$10$iXIfki6AefgcUsPqR.niQ.FvIK8vdcfup09YmUxmzS/sQeuI3QOFG")
+    scala>  "password".isBoundedBcrypted("$2a$10$iXIfki6AefgcUsPqR.niQ.FvIK8vdcfup09YmUxmzS/sQeuI3QOFG")
     res2: Boolean = true
 ```
 
@@ -78,7 +78,7 @@ backwards compatibility reasons and should be avoided if possible
     scala>  val salt = generateSalt
     salt: String = $2a$10$8K1p/a0dL1LXMIgoEDFrwO
 
-    scala>  "password".bcrypt(salt)
+    scala>  "password".boundedBcrypt(salt)
     res3: String = $2a$10$8K1p/a0dL1LXMIgoEDFrwOfMQbLgtnOoKsWc.6U6H0llP3puzeeEu
 ```
 
