@@ -24,11 +24,6 @@ package object bcrypt {
       else doBcrypt
     }
 
-    def safeBoundedBcrypt: Try[String] = {
-      if(moreThanLength(maxLength)) Failure(illegalArgumentException)
-      else Try(doBcrypt)
-    }
-
     // The defualt rounds in BCrypt.gensalt() is 10. This may lead to user confusion when using the api.
     // I suggest adding an explicit 1, or updating the documentation.
     private[this] def doBcrypt: String = B.hashpw(pswrd, BCrypt.gensalt())
@@ -42,9 +37,9 @@ package object bcrypt {
       else doBcrypt(rounds)
     }
 
-    def safeBoundedBcrypt(rounds: Int): Try[String] = {
+    def boundedBcryptSafe: Try[String] = {
       if(moreThanLength(maxLength)) Failure(illegalArgumentException)
-      else Try(doBcrypt(rounds))
+      else Try(doBcrypt)
     }
 
     private[this] def doBcrypt(rounds: Int): String = B.hashpw(pswrd, BCrypt.gensalt(rounds))
@@ -56,11 +51,6 @@ package object bcrypt {
     def boundedBcrypt(salt: String): String = {
       if(moreThanLength(maxLength)) throw illegalArgumentException
       else doBcrypt(salt)
-    }
-
-    def safeBoundedBcrypt(salt: String): Try[String] = {
-      if(moreThanLength(maxLength)) Failure(illegalArgumentException)
-      else Try(doBcrypt(salt))
     }
 
     private[this] def doBcrypt(salt: String): String = B.hashpw(pswrd, salt)

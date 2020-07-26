@@ -9,11 +9,13 @@ class bcryptSpec extends WordSpec with Matchers {
     "bounded APIs" should {
       "encrypt, check if bcrypted and fail if bounds are greater than 71 bytes long" in {
         val password = "my password"
-        val hash = password.boundedBcrypt
-        password.isBoundedBcryptedSafe(hash) shouldEqual Success(true)
-        "my new password".isBoundedBcryptedSafe(hash) shouldEqual Success(false)
-        val longHash = Range(0, 20).map(_ => password).mkString("")
-        longHash.safeBoundedBcrypt.isFailure should be(true)
+        val tryHash = password.boundedBcryptSafe
+        tryHash.map { hash =>
+          password.isBoundedBcryptedSafe(hash) shouldEqual Success(true)
+          "my new password".isBoundedBcryptedSafe(hash) shouldEqual Success(false)
+        }.getOrElse(fail("failed while trying to bcrypt"))
+        val longPassword = Range(0, 20).map(_ => password).mkString("")
+        longPassword.boundedBcryptSafe.isFailure should be(true)
       }
 
       "encrypt with provided salt, check if bcrypted and fail if bounds are greater than 71 bytes long" in {
@@ -24,13 +26,27 @@ class bcryptSpec extends WordSpec with Matchers {
         val extractedHash = hash.get
         password.isBoundedBcryptedSafe(extractedHash) shouldEqual Success(true)
         "my new password".isBoundedBcryptedSafe(extractedHash) shouldEqual Success(false)
-        val longHash = Range(0, 20).map(_ => password).mkString("")
-        longHash.safeBoundedBcrypt.isFailure should be(true)
+        val longPassword = Range(0, 20).map(_ => password).mkString("")
+        longPassword.boundedBcryptSafe(salt).isFailure should be(true)
+      }
+
+      "encrypt with provided rounds, check if bcrypted and fail if bounds are greater than 71 bytes long" in {
+        val password = "password"
+        val hash = password.boundedBcryptSafe(10)
+        hash.isSuccess shouldEqual true
+        val extractedHash = hash.get
+        password.isBoundedBcryptedSafe(extractedHash) shouldEqual Success(true)
+        "my new password".isBoundedBcryptedSafe(extractedHash) shouldEqual Success(false)
+        val longPassword = Range(0, 20).map(_ => password).mkString("")
+        longPassword.boundedBcryptSafe(10).isFailure should be(true)
       }
 
       "attempting to check isBcrypted against a non-bcrypted string will result in a scala.util.Failure" in {
-        val result = "password".isBoundedBcryptedSafe("password")
+        val password = "password"
+        val result = password.isBoundedBcryptedSafe(password)
+        val longPassword = Range(0, 20).map(_ => password).mkString("")
         result.isFailure shouldEqual true
+        longPassword.isBoundedBcryptedSafe(password).isFailure shouldEqual true
       }
 
       "attempting to use rounds > 30 will result in a scala.util.Failure" in {
@@ -84,9 +100,11 @@ class bcryptSpec extends WordSpec with Matchers {
         val hash = password.boundedBcrypt
         password.isBoundedBcrypted(hash) shouldEqual true
         "my new password".isBoundedBcrypted(hash) shouldEqual false
-        val longHash = Range(0, 20).map(_ => password).mkString("")
-        val cought = intercept[IllegalArgumentException](longHash.boundedBcrypt)
-        cought.getMessage should be(s"$longHash was more than 71 bytes long.")
+        val longPassword = Range(0, 20).map(_ => password).mkString("")
+        val cought = intercept[IllegalArgumentException](longPassword.boundedBcrypt)
+        cought.getMessage should be(s"$longPassword was more than 71 bytes long.")
+        val cought2 = intercept[IllegalArgumentException](longPassword.isBoundedBcrypted(hash))
+        cought2.getMessage should be(s"$longPassword was more than 71 bytes long.")
       }
 
       "encrypt with provided salt and check if bcrypted" in {
@@ -95,9 +113,19 @@ class bcryptSpec extends WordSpec with Matchers {
         val hash = password.boundedBcrypt(salt)
         password.isBoundedBcrypted(hash) shouldEqual true
         "my new password".isBoundedBcrypted(hash) shouldEqual false
-        val longHash = Range(0, 20).map(_ => password).mkString("")
-        val cought = intercept[IllegalArgumentException](longHash.boundedBcrypt)
-        cought.getMessage should be(s"$longHash was more than 71 bytes long.")
+        val longPassword = Range(0, 20).map(_ => password).mkString("")
+        val cought = intercept[IllegalArgumentException](longPassword.boundedBcrypt)
+        cought.getMessage should be(s"$longPassword was more than 71 bytes long.")
+      }
+
+      "encrypt with provided rounds and check if bcrypted" in {
+        val password = "password"
+        val hash = password.boundedBcrypt(10)
+        password.isBoundedBcrypted(hash) shouldEqual true
+        "my new password".isBoundedBcrypted(hash) shouldEqual false
+        val longPassword = Range(0, 20).map(_ => password).mkString("")
+        val cought = intercept[IllegalArgumentException](longPassword.boundedBcrypt(10))
+        cought.getMessage should be(s"$longPassword was more than 71 bytes long.")
       }
 
       "throw an exception if bcrypt parameters are incorrect" in {
@@ -110,6 +138,12 @@ class bcryptSpec extends WordSpec with Matchers {
     "unbounded APIs" should {
       "encrypt and check if bcrypted" in {
         val hash = "my password".bcrypt
+        "my password".isBcrypted(hash) shouldEqual true
+        "my new password".isBcrypted(hash) shouldEqual false
+      }
+
+      "encrypt and check if bcrypted with rounds" in {
+        val hash = "my password".bcrypt(10)
         "my password".isBcrypted(hash) shouldEqual true
         "my new password".isBcrypted(hash) shouldEqual false
       }
