@@ -20,6 +20,8 @@ scalacOptions := Seq(
   "-encoding", "UTF-8",
   "-feature",
   "-unchecked",
+  "-deprecation",
+  "-Xlint",
   "-Ywarn-dead-code",
   "-Ywarn-numeric-widen")
 

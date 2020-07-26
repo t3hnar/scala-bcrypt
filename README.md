@@ -15,14 +15,14 @@ rounds (eg. > 30 rounds).
     scala>  import com.github.t3hnar.bcrypt._
     import com.github.t3hnar.bcrypt._
 
-    scala>  "password".boundedBcryptSafe
+    scala>  "password".bcryptSafeBounded
     res1: Try[String] = Success($2a$10$iXIfki6AefgcUsPqR.niQ.FvIK8vdcfup09YmUxmzS/sQeuI3QOFG)
 ```
 
 #### Validate password
 
 ```scala
-    scala>  "password".isBoundedBcryptedSafe("$2a$10$iXIfki6AefgcUsPqR.niQ.FvIK8vdcfup09YmUxmzS/sQeuI3QOFG")
+    scala>  "password".isBcryptedSafeBounded("$2a$10$iXIfki6AefgcUsPqR.niQ.FvIK8vdcfup09YmUxmzS/sQeuI3QOFG")
     res2: Try[Boolean] = Success(true)
 ```
 
@@ -31,8 +31,8 @@ Since `Try` is monadic, you can use a for-comprehension to compose operations th
 fail-fast semantics. You can also use the desugared notation (`flatMap`s and `map`s) if you prefer.
 ```scala
     scala>  val bcryptAndVerify = for {
-      bcrypted <- "hello".boundedBcrypt(12)
-      result <- "hello".isBoundedBcryptedSafe(bcrypted)
+      bcrypted <- "hello".bcryptBounded(12)
+      result <- "hello".isBcryptedSafeBounded(bcrypted)
     } yield result
     res: Try[Boolean] = Success(true)
 ```
@@ -46,7 +46,7 @@ But if you decide that you need to manage salt, you can use `bcrypt` in the foll
     scala>  val salt = generateSalt
     salt: String = $2a$10$8K1p/a0dL1LXMIgoEDFrwO
 
-    scala>  "password".boundedBcrypt(salt)
+    scala>  "password".bcryptBounded(salt)
     res3: Try[String] = Success($2a$10$8K1p/a0dL1LXMIgoEDFrwOfMQbLgtnOoKsWc.6U6H0llP3puzeeEu)
 ```
 
@@ -61,14 +61,14 @@ backwards compatibility reasons and should be avoided if possible.
     scala>  import com.github.t3hnar.bcrypt._
     import com.github.t3hnar.bcrypt._
 
-    scala>  "password".boundedBcrypt
+    scala>  "password".bcryptBounded
     res1: String = $2a$10$iXIfki6AefgcUsPqR.niQ.FvIK8vdcfup09YmUxmzS/sQeuI3QOFG
 ```
 
 #### Validate password
 
 ```scala
-    scala>  "password".isBoundedBcrypted("$2a$10$iXIfki6AefgcUsPqR.niQ.FvIK8vdcfup09YmUxmzS/sQeuI3QOFG")
+    scala>  "password".isBcryptedBounded("$2a$10$iXIfki6AefgcUsPqR.niQ.FvIK8vdcfup09YmUxmzS/sQeuI3QOFG")
     res2: Boolean = true
 ```
 
@@ -78,7 +78,7 @@ backwards compatibility reasons and should be avoided if possible.
     scala>  val salt = generateSalt
     salt: String = $2a$10$8K1p/a0dL1LXMIgoEDFrwO
 
-    scala>  "password".boundedBcrypt(salt)
+    scala>  "password".bcryptBounded(salt)
     res3: String = $2a$10$8K1p/a0dL1LXMIgoEDFrwOfMQbLgtnOoKsWc.6U6H0llP3puzeeEu
 ```
 
