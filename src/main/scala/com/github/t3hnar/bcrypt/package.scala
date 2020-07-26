@@ -9,8 +9,6 @@ import scala.util.{Failure, Try}
  */
 package object bcrypt {
 
-  private[this] val maxLength = 71 // max tested bytes that the library can handle before it stops working
-
   // Maybe consider moving the non deprecated methods no another package with the same method names (loose the "bounded")
   // This way the only change the developers would need to make is change the package
   implicit class BCryptStrOps(val pswrd: String) extends AnyVal {
@@ -20,7 +18,7 @@ package object bcrypt {
     def bcrypt: String = doBcrypt
 
     def boundedBcrypt: String = {
-      if(moreThanLength(maxLength)) throw illegalArgumentException
+      if(moreThanLength()) throw illegalArgumentException
       else doBcrypt
     }
 
@@ -33,12 +31,12 @@ package object bcrypt {
     def bcrypt(rounds: Int): String = doBcrypt(rounds)
 
     def boundedBcrypt(rounds: Int): String = {
-      if(moreThanLength(maxLength)) throw illegalArgumentException
+      if(moreThanLength()) throw illegalArgumentException
       else doBcrypt(rounds)
     }
 
     def boundedBcryptSafe: Try[String] = {
-      if(moreThanLength(maxLength)) Failure(illegalArgumentException)
+      if(moreThanLength()) Failure(illegalArgumentException)
       else Try(doBcrypt)
     }
 
@@ -49,7 +47,7 @@ package object bcrypt {
     def bcrypt(salt: String): String = doBcrypt(salt)
 
     def boundedBcrypt(salt: String): String = {
-      if(moreThanLength(maxLength)) throw illegalArgumentException
+      if(moreThanLength()) throw illegalArgumentException
       else doBcrypt(salt)
     }
 
@@ -60,7 +58,7 @@ package object bcrypt {
     def isBcrypted(hash: String): Boolean = doIsBcrypted(hash)
 
     def isBoundedBcrypted(hash: String): Boolean = {
-      if(moreThanLength(maxLength)) throw illegalArgumentException
+      if(moreThanLength()) throw illegalArgumentException
       else doIsBcrypted(hash)
     }
 
@@ -71,7 +69,7 @@ package object bcrypt {
     def bcryptSafe(rounds: Int): Try[String] = Try(doBcrypt(rounds))
 
     def boundedBcryptSafe(rounds: Int): Try[String] = {
-      if(moreThanLength(maxLength)) Failure(illegalArgumentException)
+      if(moreThanLength()) Failure(illegalArgumentException)
       else Try(doBcrypt(rounds))
     }
 
@@ -80,7 +78,7 @@ package object bcrypt {
     def bcryptSafe(salt: String): Try[String] = Try(doBcrypt(salt))
 
     def boundedBcryptSafe(salt: String): Try[String] = {
-      if(moreThanLength(maxLength)) Failure(illegalArgumentException)
+      if(moreThanLength()) Failure(illegalArgumentException)
       else Try(doBcrypt(salt))
     }
 
@@ -89,13 +87,13 @@ package object bcrypt {
     def isBcryptedSafe(hash: String): Try[Boolean] = Try(doIsBcrypted(hash))
 
     def isBoundedBcryptedSafe(hash: String): Try[Boolean] = {
-      if(moreThanLength(maxLength)) Failure(illegalArgumentException)
+      if(moreThanLength()) Failure(illegalArgumentException)
       else Try(doIsBcrypted(hash))
     }
 
-    private[this] def illegalArgumentException = new IllegalArgumentException(s"$pswrd was more than $maxLength bytes long.")
+    private[this] def illegalArgumentException = new IllegalArgumentException(s"$pswrd was more than 71 bytes long.")
 
-    private[this] def moreThanLength(length: Int): Boolean = pswrd.length > length
+    private[this] def moreThanLength(length: Int = 71): Boolean = pswrd.length > length
   }
 
   def generateSalt: String = B.gensalt()
