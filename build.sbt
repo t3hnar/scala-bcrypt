@@ -21,7 +21,6 @@ scalacOptions := Seq(
   "-feature",
   "-unchecked",
   "-deprecation",
-  "-Xfatal-warnings",
   "-Xlint",
   "-Ywarn-dead-code",
   "-Ywarn-numeric-widen")
