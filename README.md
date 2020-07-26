@@ -31,7 +31,7 @@ Since `Try` is monadic, you can use a for-comprehension to compose operations th
 fail-fast semantics. You can also use the desugared notation (`flatMap`s and `map`s) if you prefer.
 ```scala
     scala>  val bcryptAndVerify = for {
-      bcrypted <- "hello".safeBoundedBcrypt(12)
+      bcrypted <- "hello".boundedBcrypt(12)
       result <- "hello".isBoundedBcryptedSafe(bcrypted)
     } yield result
     res: Try[Boolean] = Success(true)
