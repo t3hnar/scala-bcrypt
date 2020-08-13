@@ -25,7 +25,7 @@ package object bcrypt {
     // I suggest adding an explicit 1, or updating the documentation.
     private[this] def doBcrypt: String = B.hashpw(pswrd, BCrypt.gensalt())
 
-    @deprecated("Use boundedBcrypt(rounds: Int) instead.\nMore information at https://github.com/t3hnar/scala-bcrypt/issues/23", "4.3.0")
+    @deprecated("Use bcryptBounded(rounds: Int) instead.\nMore information at https://github.com/t3hnar/scala-bcrypt/issues/23", "4.3.0")
     def bcrypt(rounds: Int): String = doBcrypt(rounds)
 
     def bcryptBounded(rounds: Int): String = {
@@ -40,7 +40,7 @@ package object bcrypt {
 
     private[this] def doBcrypt(rounds: Int): String = B.hashpw(pswrd, BCrypt.gensalt(rounds))
 
-    @deprecated("Use boundedBcrypt(salt: String) instead.\nMore information at https://github.com/t3hnar/scala-bcrypt/issues/23", "4.3.0")
+    @deprecated("Use bcryptBounded(salt: String) instead.\nMore information at https://github.com/t3hnar/scala-bcrypt/issues/23", "4.3.0")
     def bcrypt(salt: String): String = doBcrypt(salt)
 
     def bcryptBounded(salt: String): String = {
@@ -50,7 +50,7 @@ package object bcrypt {
 
     private[this] def doBcrypt(salt: String): String = B.hashpw(pswrd, salt)
 
-    @deprecated("Use isBoundedBcrypted(hash: String) instead.\nMore information at https://github.com/t3hnar/scala-bcrypt/issues/23", "4.3.0")
+    @deprecated("Use isBcryptedBounded(hash: String) instead.\nMore information at https://github.com/t3hnar/scala-bcrypt/issues/23", "4.3.0")
     def isBcrypted(hash: String): Boolean = doIsBcrypted(hash)
 
     def isBcryptedBounded(hash: String): Boolean = {
@@ -60,7 +60,7 @@ package object bcrypt {
 
     private[this] def doIsBcrypted(hash: String): Boolean = B.checkpw(pswrd, hash)
 
-    @deprecated("Use boundedBcryptSafe(rounds: Int) instead.\nMore information at https://github.com/t3hnar/scala-bcrypt/issues/23", "4.3.0")
+    @deprecated("Use bcryptSafeBounded(rounds: Int) instead.\nMore information at https://github.com/t3hnar/scala-bcrypt/issues/23", "4.3.0")
     def bcryptSafe(rounds: Int): Try[String] = Try(doBcrypt(rounds))
 
     def bcryptSafeBounded(rounds: Int): Try[String] = {
@@ -68,7 +68,7 @@ package object bcrypt {
       else Try(doBcrypt(rounds))
     }
 
-    @deprecated("Use boundedBcryptSafe(salt: String) instead.\nMore information at https://github.com/t3hnar/scala-bcrypt/issues/23", "4.3.0")
+    @deprecated("Use bcryptSafeBounded(salt: String) instead.\nMore information at https://github.com/t3hnar/scala-bcrypt/issues/23", "4.3.0")
     def bcryptSafe(salt: String): Try[String] = Try(doBcrypt(salt))
 
     def bcryptSafeBounded(salt: String): Try[String] = {
@@ -76,7 +76,7 @@ package object bcrypt {
       else Try(doBcrypt(salt))
     }
 
-    @deprecated("Use isBoundedBcryptedSafe(hash: String) instead.\nMore information at https://github.com/t3hnar/scala-bcrypt/issues/23", "4.3.0")
+    @deprecated("Use isBcryptedSafeBounded(hash: String) instead.\nMore information at https://github.com/t3hnar/scala-bcrypt/issues/23", "4.3.0")
     def isBcryptedSafe(hash: String): Try[Boolean] = Try(doIsBcrypted(hash))
 
     def isBcryptedSafeBounded(hash: String): Try[Boolean] = {
