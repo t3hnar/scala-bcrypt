@@ -4,9 +4,9 @@ organization := "com.github.t3hnar"
 
 description := "Scala wrapper for jBcrypt + pom.xml inside"
 
-scalaVersion := crossScalaVersions.value.last
+scalaVersion := "2.13.3" // crossScalaVersions.value.last
 
-crossScalaVersions := Seq("2.11.12", "2.12.12", "2.13.3")
+crossScalaVersions := Seq("2.11.12", "2.12.18", "2.13.12", "3.3.1")
 
 releaseCrossBuild := true
 
@@ -26,8 +26,8 @@ scalacOptions := Seq(
   "-Ywarn-numeric-widen")
 
 libraryDependencies ++= Seq(
-  "de.svenkubiak" % "jBCrypt" % "0.4.1",
-  "org.scalatest" %% "scalatest" % "3.0.8" % Test/*,
+  "de.svenkubiak" % "jBCrypt" % "0.4.3",
+  "org.scalatest" %% "scalatest" % "3.2.17" % Test/*,
   "org.scalatest" %% "scalatest" % "3.2.0" % Test,
   "org.scalatest" %% "scalatest-wordspec" % "3.2.0" % Test*/)
 

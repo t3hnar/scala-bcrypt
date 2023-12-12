@@ -1,10 +1,11 @@
 package com.github.t3hnar.bcrypt
 
-import org.scalatest.{Matchers, WordSpec}
 
 import scala.util.Success
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-class bcryptSpec extends WordSpec with Matchers {
+class bcryptSpec extends AnyWordSpec with Matchers {
   "safe APIs" should {
     "bounded APIs" should {
       "encrypt, check if bcrypted and fail if bounds are greater than 71 bytes long" in {
